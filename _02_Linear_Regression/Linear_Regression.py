@@ -20,7 +20,7 @@ def lasso(data):
     max_iterations = 100000
     for i in range(max_iterations):
        grad = (np.matmul(X.T, (np.matmul(X, weight) - y))) + 30 * np.sign(weight)
-       weight = weight - 1e-12 * grad
+       weight = weight - 1e-11 * grad
        if np.linalg.norm(grad) < 0.0001:
            break
     return weight @ data
