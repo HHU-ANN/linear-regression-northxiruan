@@ -9,7 +9,7 @@ except ImportError as e:
 #最小二乘岭回归
 def ridge(data):
     X,y=read_data()
-    
+    z=np.matmul(X.T,X)+np.eye(X.shape[1])*(0.000000000000000000000000000001)
     weight=np.matmul(np.linalg.inv(z),np.matmul(X.T,y))
     return weight @ data
     #梯度下降Lasso回归 
