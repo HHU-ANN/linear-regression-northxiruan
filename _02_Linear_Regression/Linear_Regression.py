@@ -6,13 +6,13 @@ try:
 except ImportError as e:
     os.system("sudo pip3 install numpy")
     import numpy as np
-
+#最小二乘岭回归
 def ridge(data):
     X,y=read_data()
-    z=np.matmul(X.T,X)+np.eye(X.shape[1])*(0.000000000000000000000000000001)
+    
     weight=np.matmul(np.linalg.inv(z),np.matmul(X.T,y))
     return weight @ data
-    
+    #梯度下降Lasso回归 
 def lasso(data):
     X,y=read_data()
     m, k = X.shape
@@ -21,6 +21,7 @@ def lasso(data):
     for i in range(max_iterations):
        grad = (np.matmul(X.T, (np.matmul(X, weight) - y))) + 30 * np.sign(weight)
        weight = weight - 1e-11 * grad
+        #学习率1e-11
        if np.linalg.norm(grad) < 0.0001:
            break
     return weight @ data
